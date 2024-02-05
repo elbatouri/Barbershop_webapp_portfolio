@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Basic -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <!-- Mobile Metas -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <!-- Site Metas -->
+  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>BarberShop BORODA</title>
+
+  <!-- bootstrap core css -->
+  <link rel="stylesheet" type="text/css" href="static/styles/bootstrap.css">
+  <!-- font awesome style -->
+  <link href="static/styles/font-awesome.min.css" rel="stylesheet" />
+  <!-- Custom styles for this template -->
+  <link href="static/styles/style.css" rel="stylesheet" />
+  <!-- responsive style -->
+  <link href="static/styles/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <!-- header section strats -->
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="home.html">
+          <span>
+            BarberShop BORODA
+          </span>
+        </a>
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="home">Home</a>
+                <a href="gallery">Galerry</a>
+                <a href="booking">Booking</a>
+                {% if current_user.is_authenticated %}
+                  <a href="{{ url_for('auth.logout') }}">Logout</a>
+                {% else %}
+                  <a href="{{ url_for('auth.login') }}">Login</a>
+                  <a href="{{ url_for('auth.sign_up') }}">Sign Up</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- end header section -->
+
+  <!-- slider section -->
+  <section class="slider_section position-relative">
+    <div class="slider_bg_box">
+      <img src="static/images/slider-bg.avif" alt="">
+    </div>
+    <div class="slider_bg"></div>
+    <div class="container-silder">
+      <div class="col-md-9 col-lg-8">
+        <div class="detail-box">
+          <h1>
+            Best Barber
+            <br> In Town</h1>
+          <p>
+            "Transform your look and elevate your style with precision cuts and personalized 
+            grooming at our premier barber shop, where skilled barbers deliver the perfect blend 
+            of expertise and creativity to bring out the best in you."
+          </p>
+          <div>
+            <a href="" class="slider-link">
+              Book Your Seat
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- end slider section -->
+
+  <!-- shop section -->
+
+  <section class="shop_section layout_padding">
+    <!-- the services division -->
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>
+          Our Services
+        </h2>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="">
+              <div class="img-box">
+                <img src="static/images/Services/beardtrim.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  beardtrim
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    $25
+                  </span>
+                </h6>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="">
+              <div class="img-box">
+                <img src="static/images/Services/haircut.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  haircut
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    $60
+                  </span>
+                </h6>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="">
+              <div class="img-box">
+                <img src="static/images/Services/beardtrim.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  hairwash
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    $15
+                  </span>
+                </h6>
+              </div>
+            </a>
+          </div>
+        </div>
+        <div class="col-sm-8 col-md-4 col-lg-3">
+          <div class="box">
+            <a href="">
+              <div class="img-box">
+                <img src="static/images/Services/haircut.jpg" alt="">
+              </div>
+              <div class="detail-box">
+                <h6>
+                  hairwash
+                </h6>
+                <h6>
+                  Price
+                  <span>
+                    $15
+                  </span>
+                </h6>
+              </div>                      
+            </a>
+          </div>
+        </div>
+    </div>
+    <!-- end of the services division -->
+    <!-- the barbers division -->
+    <div class="container">
+        <div class="heading_container heading_center">
+          <h2>
+            Meet our Barbers
+          </h2>
+        </div>
+        <div class="row">
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/andre-reis-_XD3D9pH83k-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Hicham
+                  </h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/gabriella-clare-marino-kbhff9Wu21k-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Marino
+                  </h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-6 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/jeppe-monster-GOjF1vXObrg-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Jeppe
+                  </h6>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/jonathan-cooper-z4sRD2VGjIQ-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Jonathan
+                </div>                      
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/salah-regouane-8HkPnJhC5Ic-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Salah
+                </div>                      
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/dave-goudreau-nf-vDWn5kh0-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Dave
+                </div>                      
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/delfina-pan-wJoB8D3hnzc-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Delfina
+                </div>                      
+              </a>
+            </div>
+          </div>
+          <div class="col-sm-8 col-md-4 col-lg-3">
+            <div class="box">
+              <a href="">
+                <div class="img-box">
+                  <img src="static/images/barbers/wells-chan-YYxNrHsfEoI-unsplash.jpg" alt="">
+                </div>
+                <div class="detail-box">
+                  <h6>
+                    Book with Chan
+                </div>                      
+              </a>
+            </div>
+      </div>
+   </div>
+  </section>
+
+  <!-- end shop section -->
+
+  <!-- about section -->
+
+  <section class="about_section  ">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="img-box">
+            <img src="static/images/Services/haircut.jpg" alt="">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box">
+            <div class="heading_container">
+              <h2>
+                About Us
+              </h2>
+            </div>
+            <p>
+              "Welcome to BORODA BarberShop, where grooming is an art and style is a statement. At BORODA BarberShop, 
+              we take pride in delivering exceptional barbering experiences tailored to each individual. Our team of skilled and 
+              passionate barbers is dedicated to providing precision cuts, modern styles, and personalized grooming services, ensuring you leave feeling confident and refreshed. 
+              With a commitment to excellence, we strive to create an inviting and comfortable atmosphere, making your visit to BORODA BarberShop not just a haircut, 
+              but a memorable grooming journey. Step into our world of expertise, style, and relaxation – where every visit is an opportunity to enhance your unique charm. 
+              Discover the difference at BORODA BarberShop."
+            </p>
+            <a href="">
+              Read More
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- info section -->
+  <section class="info_section layout_padding2">
+    <div class="container">
+      <div class="row info_form_social_row">
+        <div class="col-md-8 col-lg-9">
+          <div class="info_form">
+            <form action="">
+              <input type="email" placeholder="Enter your email">
+              <button>
+                <i class="fa fa-arrow-right" aria-hidden="true"></i>
+              </button>
+            </form>
+          </div>
+        </div>
+        <div class="col-md-4 col-lg-3">
+
+          <div class="social_box">
+            <a href="">
+              <i class="fa fa-facebook" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-twitter" aria-hidden="true"></i>
+            </a>
+            <a href="">
+              <i class="fa fa-linkedin" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- end info_section -->
+
+
+  <!-- footer section -->
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://github.com/elbatouri">elbatouri</a>
+      </p>
+    </div>
+  </footer>
+  <!-- footer section -->
+
+
+  <!-- jQery -->
+  <script src="static/scripts/jquery-3.4.1.min.js"></script>
+  <!-- bootstrap js -->
+  <script src="static/scripts/bootstrap.js"></script>
+  <!-- custom js -->
+  <script src="static/scripts/custom.js"></script>
+
+</body>
+
+</html>

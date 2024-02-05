@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+  <link rel="icon" href="images/favicon.png" type="image/gif" />
+
+  <meta name="keywords" content="" />
+
+  <meta name="description" content="" />
+
+  <meta name="author" content="" />
+
+  <title>BarberShop BORODA - Gallery</title>
+
+  <link rel="stylesheet" type="text/css" href="static/styles/bootstrap.css" />
+
+  <link href="/static/styles/font-awesome.min.css" rel="stylesheet" />
+
+  <link href="static/styles/style.css" rel="stylesheet" />
+
+  <link href="static/styles/responsive.css" rel="stylesheet" />
+
+</head>
+
+<body>
+
+  <header class="header_section">
+
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+
+        <a class="navbar-brand" href="home.html">
+
+          <span>
+
+            BarberShop BORODA
+
+          </span>
+
+        </a>
+
+        <div class="" id="">
+
+          <div class="custom_menu-btn">
+
+            <button onclick="openNav()">
+
+              <span class="s-1"> </span>
+
+              <span class="s-2"> </span>
+
+              <span class="s-3"> </span>
+
+            </button>
+
+            <div id="myNav" class="overlay">
+
+              <div class="overlay-content">
+
+                <a href="home">Home</a>
+
+                <a href="gallery">Gallery</a>
+
+                <a href="booking">Booking</a>
+                {% if current_user.is_authenticated %}
+                  <a href="{{ url_for('auth.logout') }}">Logout</a>
+                {% else %}
+                  <a href="{{ url_for('auth.login') }}">Login</a>
+                  <a href="{{ url_for('auth.sign_up') }}">Sign Up</a>
+                {% endif %}
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </nav>
+
+    </div>
+
+  </header>
+
+  <section class="gallery_section layout_padding">
+
+    <div class="container">
+
+      <div class="heading_container heading_center">
+
+        <h1>
+
+          Gallery
+
+        </h1>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-md-4">
+
+          <div class="img-box">
+
+            <img src="static/images/gallery/haircuts/gelmis-bartulis-DdeqNYIQ0kg-unsplash.jpg" alt="Haircut 1">
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="img-box">
+
+            <img src="static/images/gallery/haircuts/hannah-skelly-g5A9gO59ERU-unsplash.jpg" alt="Haircut 2">
+
+          </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+          <div class="img-box">
+
+            <img src="static/images/gallery/haircuts/megan-bagshaw-YmaaUNbHHtw-unsplash.jpg" alt="Haircut 3">
+
+          </div>
+
+        </div>
+
+        <!-- Add more gallery items as needed -->
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <section class="client_section layout_padding">
+
+    <div class="container">
+
+      <div class="heading_container">
+
+        <h2>
+
+          Testimonial
+
+        </h2>
+
+      </div>
+
+      <div id="carouselExample2Controls" class="carousel slide" data-ride="carousel">
+
+        <div class="carousel-inner">
+          {% for testimonial in all_testimonials %}
+            <div class="carousel-item {% if loop.first %}active{% endif %}">
+              <div class="row">
+                <div class="col-md-11 col-lg-10 mx-auto">
+                  <div class="box">
+                    <div class="detail-box">
+                      <div class="name">
+                        <h6>{{ testimonial.user.name }}</h6>
+                      </div>
+                      <p>{{ testimonial.data }}</p>
+                      <i class="fa fa-quote-left" aria-hidden="true"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="carousel_btn-container">
+
+          <a class="carousel-control-prev" href="#carouselExample2Controls" role="button" data-slide="prev">
+
+            <i class="fa fa-long-arrow-left" aria-hidden="true"></i>
+
+            <span class="sr-only">Previous</span>
+
+          </a>
+
+          <a class="carousel-control-next" href="#carouselExample2Controls" role="button" data-slide="next">
+
+            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+
+            <span class="sr-only">Next</span>
+
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <footer class="footer_section">
+
+    <div class="container">
+
+      <p>
+
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+
+        <a href="https://github.com/elbatouri">elbatouri</a>
+
+      </p>
+
+    </div>
+
+  </footer>
+
+  <script src="static/scripts/jquery-3.4.1.min.js"></script>
+
+  <script src="static/scripts/bootstrap.js"></script>
+
+  <script src="static/scripts/custom.js"></script>
+
+</body>
+
+</html>

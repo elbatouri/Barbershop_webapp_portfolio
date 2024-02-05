@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="icon" href="images/favicon.png" type="image/gif" />
+  <meta name="keywords" content="" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+  <title>BarberShop BORODA</title>
+  <link rel="stylesheet" type="text/css" href="static/styles/bootstrap.css" />
+  <link href="static/styles/font-awesome.min.css" rel="stylesheet" />
+  <link href="static/styles/style.css" rel="stylesheet" />
+  <link href="static/styles/responsive.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/css/bootstrap-datepicker.min.css">
+</head>
+
+<body>
+
+  <header class="header_section">
+    <div class="container-fluid">
+      <nav class="navbar navbar-expand-lg custom_nav-container">
+        <a class="navbar-brand" href="home.html">
+          <span>BarberShop BORODA</span>
+        </a>
+        <div class="" id="">
+          <div class="custom_menu-btn">
+            <button onclick="openNav()">
+              <span class="s-1"> </span>
+              <span class="s-2"> </span>
+              <span class="s-3"> </span>
+            </button>
+            <div id="myNav" class="overlay">
+              <div class="overlay-content">
+                <a href="home">Home</a>
+                <a href="gallery">Gallery</a>
+                <a href="booking">Booking</a>
+                {% if current_user.is_authenticated %}
+                  <a href="{{ url_for('auth.logout') }}">Logout</a>
+                {% else %}
+                  <a href="{{ url_for('auth.login') }}">Login</a>
+                  <a href="{{ url_for('auth.sign_up') }}">Sign Up</a>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <section class="booking_section layout_padding">
+    <div class="container">
+      <div class="heading_container heading_center">
+        <h2>Booking Form</h2>
+      </div>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+              {{ message }}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endwith %}
+      <form method="post">
+        <div class="form-group">
+          <label for="barber">Choose Barber:</label>
+          <select class="form-control" id="barber" name="barber" required>
+            {% for barber in barbers %}
+              <option value="{{ barber.id }}">{{ barber.name }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="service">Select Service:</label>
+          <select class="form-control" id="service" name="service" required>
+            <option value="beardtrim">Beard Trim</option>
+            <option value="haircut">Haircut</option>
+            <option value="hairwash">Hair Wash</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="date">Select Date:</label>
+          <input type="text" class="form-control datepicker" id="datepicker" name="date" required>
+        </div>
+        <div class="form-group">
+          <label for="time">Select Time:</label>
+          <input type="time" class="form-control" id="time" name="time" required>
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input type="tel" class="form-control" id="phone" name="phone" placeholder="+212600000000" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Book Now</button>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer_section">
+    <div class="container">
+      <p>
+        &copy; <span id="displayYear"></span> All Rights Reserved By
+        <a href="https://github.com/elbatouri">elbatouri</a>
+      </p>
+    </div>
+  </footer>
+
+  <script src="static/scripts/jquery-3.4.1.min.js"></script>
+  <script src="static/scripts/bootstrap.js"></script>
+  <script src="static/scripts/custom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      $('#datepicker').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true,
+        todayHighlight: true
+      });
+    });
+  </script>
+</body>
+
+</html>
