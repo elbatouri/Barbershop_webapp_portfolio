@@ -1,11 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Appointment Dashboard</title>
-    <!-- Include Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- Basic -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <!-- Site Metas -->
+    <link rel="icon" href="images/favicon.png" type="image/gif" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+
+    <!-- bootstrap core css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.css') }}">
+    <!-- font awesome style -->
+    <link href="{{ url_for('static', filename='styles/font-awesome.min.css') }}" rel="stylesheet" />
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
+    <!-- responsive style -->
+    <link href="{{ url_for('static', filename='styles/responsive.css') }}" rel="stylesheet" />
+
     <style>
         body {
             background-color: white;
@@ -24,6 +39,38 @@
     </style>
 </head>
 <body>
+    <!-- Header Section -->
+    <header class="header_section">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg custom_nav-container">
+                <div class="" id="">
+                    <div class="custom_menu-btn">
+                        <button onclick="openNav()">
+                            <span class="s-1"></span>
+                            <span class="s-2"></span>
+                            <span class="s-3"></span>
+                        </button>
+                        <div id="myNav" class="overlay">
+                            <div class="overlay-content">
+                                <a href="home">Home</a>
+                                <a href="gallery">Gallery</a>
+                                <a href="booking">Booking</a>
+                                <a href="{{ url_for('views.appointment_dashboard') }}">Appointment Dashboard</a>
+                                {% if current_user.is_authenticated %}
+                                    <a href="{{ url_for('auth.logout') }}">Logout</a>
+                                {% else %}
+                                    <a href="{{ url_for('auth.login') }}">Login</a>
+                                    <a href="{{ url_for('auth.sign_up') }}">Sign Up</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header Section -->
+
     <div class="container">
         <h1>All Booked Appointments</h1>
 
@@ -45,7 +92,6 @@
                     <th>Service</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Phone Number</th>
                 </tr>
             </thead>
             <tbody>
@@ -60,10 +106,12 @@
             </tbody>
         </table>
     </div>
+
     <!-- Include Bootstrap JS and Popper.js if needed -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
     <script>
         function filterAppointments() {
             var selectedBarberId = document.getElementById('barberFilter').value;
@@ -85,5 +133,13 @@
             }
         }
     </script>
+
+    <!-- jQery -->
+    <script src="{{ url_for('static', filename='scripts/jquery-3.4.1.min.js') }}"></script>
+    <!-- bootstrap js -->
+    <script src="{{ url_for('static', filename='scripts/bootstrap.js') }}"></script>
+    <!-- custom js -->
+    <script src="{{ url_for('static', filename='scripts/custom.js') }}"></script>
+
 </body>
 </html>
