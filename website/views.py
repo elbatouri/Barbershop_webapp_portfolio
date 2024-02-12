@@ -86,7 +86,7 @@ def booking():
     barbers = Barber.query.all()
     return render_template("appointement.html", user=current_user, barbers=barbers)
 
-@views.route('/dashboard/appointments')
+@views.route('/dashboard')
 @login_required
 def appointment_dashboard():
     # Fetch booked appointments with associated barber information
