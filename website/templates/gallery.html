@@ -195,6 +195,18 @@
 
     </div>
 
+     <!-- Testimonial Form -->
+     <div class="container">
+      <form method="POST" action="{{ url_for('views.gallery') }}">
+          <div class="form-group">
+            <label></label>
+            <textarea class="form-control" id="testimonial" name="testimonial" rows="3" placeholder="What do you think about us ??" required></textarea>
+          </div>
+        <button type="submit" class="custom-button">Comment</button>
+      </form>
+  </div>
+</div>
+
   </section>
 
   <footer class="footer_section">
