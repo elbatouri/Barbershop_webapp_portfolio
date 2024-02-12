@@ -86,15 +86,21 @@ def booking():
     barbers = Barber.query.all()
     return render_template("appointement.html", user=current_user, barbers=barbers)
 
-@views.route('/dashboard')
+@views.route('/dashboard', methods=['GET', 'POST'])
 @login_required
 def appointment_dashboard():
-    # Fetch booked appointments with associated barber information
-    booked_appointments = db.session.query(Booking, Barber).join(Barber).all()
-
     # Fetch all barbers for the filter dropdown
     all_barbers = Barber.query.all()
 
-    # Pass the appointments and barbers to the template
-    return render_template('appointment_dashboard.html', appointments=booked_appointments, all_barbers=all_barbers)
+    # Initialize variables for filtering
+    selected_date = request.form.get('selected_date')  # Get the selected date from the form
+
+    # Fetch booked appointments with associated barber information, optionally filtered by date
+    if selected_date:
+        booked_appointments = db.session.query(Booking, Barber).join(Barber).filter(Booking.date == selected_date).all()
+    else:
+        booked_appointments = db.session.query(Booking, Barber).join(Barber).all()
+
+    # Pass the appointments, barbers, and selected date to the template
+    return render_template('appointment_dashboard.html', appointments=booked_appointments, all_barbers=all_barbers, selected_date=selected_date)
 

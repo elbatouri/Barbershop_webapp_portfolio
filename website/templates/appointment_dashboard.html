@@ -12,13 +12,13 @@
     <meta name="description" content="" />
     <meta name="author" content="" />
 
-    <!-- bootstrap core css -->
+    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='styles/bootstrap.css') }}">
-    <!-- font awesome style -->
+    <!-- Font Awesome -->
     <link href="{{ url_for('static', filename='styles/font-awesome.min.css') }}" rel="stylesheet" />
     <!-- Custom styles for this template -->
     <link href="{{ url_for('static', filename='styles/style.css') }}" rel="stylesheet" />
-    <!-- responsive style -->
+    <!-- Responsive style -->
     <link href="{{ url_for('static', filename='styles/responsive.css') }}" rel="stylesheet" />
 
     <style>
@@ -85,6 +85,12 @@
             </select>
         </div>
 
+        <!-- Date filter -->
+        <div class="form-group">
+            <label for="dateFilter">Filter by Date:</label>
+            <input type="date" class="form-control" id="dateFilter" onchange="filterAppointments()">
+        </div>
+
         <table class="table table-striped table-bordered" id="appointmentsTable">
             <thead class="thead-dark">
                 <tr>
@@ -96,7 +102,7 @@
             </thead>
             <tbody>
                 {% for booking, barber in appointments %}
-                    <tr data-barber-id="{{ barber.id }}">
+                    <tr data-barber-id="{{ barber.id }}" data-booking-date="{{ booking.date }}">
                         <td>{{ barber.name }}</td>
                         <td>{{ booking.service }}</td>
                         <td>{{ booking.date }}</td>
@@ -115,6 +121,7 @@
     <script>
         function filterAppointments() {
             var selectedBarberId = document.getElementById('barberFilter').value;
+            var selectedDate = document.getElementById('dateFilter').value;
 
             // Show all rows by default
             var rows = document.querySelectorAll('#appointmentsTable tbody tr');
@@ -122,7 +129,7 @@
                 row.style.display = '';
             });
 
-            // If a specific barber is selected, hide rows that don't match the selected barber
+            // Filter by Barber
             if (selectedBarberId !== 'all') {
                 rows.forEach(function(row) {
                     var barberId = row.getAttribute('data-barber-id');
@@ -131,14 +138,24 @@
                     }
                 });
             }
+
+            // Filter by Date
+            if (selectedDate) {
+                rows.forEach(function(row) {
+                    var bookingDate = row.getAttribute('data-booking-date');
+                    if (bookingDate !== selectedDate) {
+                        row.style.display = 'none';
+                    }
+                });
+            }
         }
     </script>
 
-    <!-- jQery -->
+    <!-- jQuery -->
     <script src="{{ url_for('static', filename='scripts/jquery-3.4.1.min.js') }}"></script>
-    <!-- bootstrap js -->
+    <!-- Bootstrap JS -->
     <script src="{{ url_for('static', filename='scripts/bootstrap.js') }}"></script>
-    <!-- custom js -->
+    <!-- Custom JS -->
     <script src="{{ url_for('static', filename='scripts/custom.js') }}"></script>
 
 </body>
