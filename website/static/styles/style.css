@@ -175,6 +175,17 @@ h2 {
   transition: all 0.1s;
 }
 
+.custom-button {
+  border-radius: 10px;
+  background-color: #fd9c6b;
+  color: white;
+}
+
+.custom-button:hover {
+  background-color : #000000;
+  color: white;
+}
+
 .menu_btn-style button span {
   background-color: #ffffff;
 }

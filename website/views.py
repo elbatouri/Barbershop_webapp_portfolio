@@ -14,18 +14,19 @@ def gallery():
     user_testimonials = Testimonial.query.filter_by(user_id=current_user.id).all()
     all_testimonials = Testimonial.query.all()
 
-    if request.method == 'POST': 
+    if request.method == 'POST':
         testimonial_text = request.form.get('testimonial')
 
         if not testimonial_text or len(testimonial_text.strip()) < 1:
-            flash('Testimonial is too short!', category='error') 
+            flash('Testimonial is too short!', category='error')
         else:
             new_testimonial = Testimonial(data=testimonial_text, user_id=current_user.id)
             db.session.add(new_testimonial)
             db.session.commit()
             flash('Testimonial added!', category='success')
 
-    return render_template("gallery.html", user=current_user, user_testimonials=user_testimonials, all_testimonials=all_testimonials)
+    return render_template("gallery.html", user=current_user, user_testimonials=user_testimonials,
+                           all_testimonials=all_testimonials)
 
 @views.route('/home', methods=['GET'])
 def home():
