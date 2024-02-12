@@ -25,8 +25,20 @@
 </head>
 <body>
     <div class="container">
-        <h1>Booked Appointments</h1>
-        <table class="table table-striped table-bordered">
+        <h1>All Booked Appointments</h1>
+
+        <!-- Barber filter dropdown -->
+        <div class="form-group">
+            <label for="barberFilter">Filter by Barber:</label>
+            <select class="form-control" id="barberFilter" onchange="filterAppointments()">
+                <option value="all">All Barbers</option>
+                {% for barber in all_barbers %}
+                    <option value="{{ barber.id }}">{{ barber.name }}</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <table class="table table-striped table-bordered" id="appointmentsTable">
             <thead class="thead-dark">
                 <tr>
                     <th>Barber</th>
@@ -37,13 +49,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for appointment in appointments %}
-                    <tr>
-                        <td>{{ appointment.barber.name }}</td>
-                        <td>{{ appointment.service }}</td>
-                        <td>{{ appointment.date }}</td>
-                        <td>{{ appointment.time }}</td>
-                        <td>{{ appointment.phone_number }}</td>
+                {% for booking, barber in appointments %}
+                    <tr data-barber-id="{{ barber.id }}">
+                        <td>{{ barber.name }}</td>
+                        <td>{{ booking.service }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>{{ booking.time }}</td>
+                        <td>{{ booking.phone_number }}</td>
                     </tr>
                 {% endfor %}
             </tbody>
@@ -53,5 +65,26 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+        function filterAppointments() {
+            var selectedBarberId = document.getElementById('barberFilter').value;
+
+            // Show all rows by default
+            var rows = document.querySelectorAll('#appointmentsTable tbody tr');
+            rows.forEach(function(row) {
+                row.style.display = '';
+            });
+
+            // If a specific barber is selected, hide rows that don't match the selected barber
+            if (selectedBarberId !== 'all') {
+                rows.forEach(function(row) {
+                    var barberId = row.getAttribute('data-barber-id');
+                    if (barberId !== selectedBarberId) {
+                        row.style.display = 'none';
+                    }
+                });
+            }
+        }
+    </script>
 </body>
 </html>

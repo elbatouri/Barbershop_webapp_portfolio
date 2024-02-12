@@ -89,8 +89,12 @@ def booking():
 @views.route('/dashboard/appointments')
 @login_required
 def appointment_dashboard():
-    # Fetch booked appointments from the database
-    booked_appointments = Booking.query.all()
+    # Fetch booked appointments with associated barber information
+    booked_appointments = db.session.query(Booking, Barber).join(Barber).all()
 
-    # Pass the appointments to the template
-    return render_template('appointment_dashboard.html', appointments=booked_appointments)
+    # Fetch all barbers for the filter dropdown
+    all_barbers = Barber.query.all()
+
+    # Pass the appointments and barbers to the template
+    return render_template('appointment_dashboard.html', appointments=booked_appointments, all_barbers=all_barbers)
+
