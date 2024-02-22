@@ -3,9 +3,13 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from flask_bcrypt import Bcrypt
+
+
 
 # Create a Blueprint for authentication
 auth = Blueprint('auth', __name__)
+bcrypt = Bcrypt()
 
 # Route for user login
 @auth.route('/login', methods=['GET', 'POST'])
@@ -19,7 +23,7 @@ def login():
         user = User.query.filter_by(email=email).first()
         
         # Check if the user exists and the password is correct
-        if user and check_password_hash(user.password, password):
+        if user and bcrypt.check_password_hash(user.password, password):
             # Log in the user and redirect to the home page
             flash('Logged in successfully!', category='success')
             login_user(user, remember=True)
@@ -63,8 +67,8 @@ def sign_up():
             flash('Password must be at least 7 characters.', category='error')
         else:
             # Create a new user, add to the database, and log in
-            new_user = User(email=email, first_name=first_name, password=generate_password_hash(
-                            password1, method='pbkdf2:sha256', salt_length=8))
+            hashed_password = bcrypt.generate_password_hash(password1).decode('utf-8')
+            new_user = User(email=email, first_name=first_name, password=hashed_password)
             db.session.add(new_user)
             db.session.commit()
             login_user(new_user, remember=True)
